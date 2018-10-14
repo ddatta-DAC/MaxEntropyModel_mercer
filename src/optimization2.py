@@ -192,8 +192,8 @@ def run_opt(T_set, lr, max_Err, max_iter):
 # { tile_id : tile_obj }
 # ------------------------------------------------------ #
 def optimize(Tile_set):
-	lr = 0.001
-	max_iter = 10000
+	lr = 0.002
+	max_iter = 100000
 	# check convergence
 	max_Err = math.pow(10, -4)
 	return run_opt(Tile_set, lr, max_Err, max_iter)
