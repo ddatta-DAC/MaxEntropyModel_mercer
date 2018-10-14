@@ -16,8 +16,13 @@ except:
 	# from tile_definition import Tile
 
 # ---------------------------------------------------------- #
-# Standard gradient descent
+# Gradient descent with penalty
 # ---------------------------------------------------------- #
+# Penalty : + Sum (log(beta_ij)
+# ---------------------------------------------------------- #
+
+
+penalty_constant = 4
 
 def f(T_set, alpha, beta, membership):
 	return
@@ -39,13 +44,15 @@ def grad_aux2(T,alpha,beta):
 				val += (1/2 * beta[ed][i][j]) + (math.pow(alpha[ed][i][j],2) /(4*math.pow(beta[ed][i][j],2)))
 	return val
 
-def grad_aux3(T,alpha,beta):
+def grad_aux3(T , beta):
+	global penalty_constant
 	val = 0
 	for ed, r_c  in T.get_elements().items():
 		for i in r_c[0]:
 			for j in r_c[1]:
-				val += (1/2 * beta[ed][i][j]) + (math.pow(alpha[ed][i][j],2) /(4*math.pow(beta[ed][i][j],2)))
-	return val
+				val += (1/ beta[ed][i][j])
+	return penalty_constant * val
+
 
 def deriv_f(T_set, alpha, beta, membership):
 	grad = np.zeros([len(T_set),2])
@@ -54,7 +61,7 @@ def deriv_f(T_set, alpha, beta, membership):
 	for id, T in T_set.items():
 		# lambda_m
 		grad[id][0] = T.f_m + grad_aux1(T,alpha,beta)
-		grad[id][1] = T.f_v - grad_aux1(T, alpha, beta)
+		grad[id][1] = T.f_v - grad_aux1(T, alpha, beta) - grad_aux3(T , beta)
 
 	return grad
 

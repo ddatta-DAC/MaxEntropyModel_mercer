@@ -8,15 +8,15 @@ import src.optimization1
 import src.tile_definition as tile_def
 from src.tile_definition import Tile
 import src.background_tile_info as background
-import src.optimization1 as opt
+import src.optimization2 as opt
 
 # --------------- #
 
 def get_data( ):
 	D = [
-		np.random.random([4, 5]),
+		np.random.random([4, 4]),
 		np.random.random([4, 6]),
-		np.random.random([4, 5]),
+		np.random.random([4, 7]),
 		np.random.random([4, 4])
 	]
 	return D
