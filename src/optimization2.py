@@ -22,7 +22,7 @@ except:
 # ---------------------------------------------------------- #
 
 
-penalty_constant = 4
+penalty_constant = 2.5
 
 def f(T_set, alpha, beta, membership):
 	return
@@ -193,8 +193,8 @@ def run_opt(T_set, lr, max_Err, max_iter):
 # ------------------------------------------------------ #
 def optimize(Tile_set):
 	lr = 0.002
-	max_iter = 100000
+	max_iter = 10000
 	# check convergence
-	max_Err = math.pow(10, -4)
+	max_Err = math.pow(10, -3)
 	return run_opt(Tile_set, lr, max_Err, max_iter)
 
